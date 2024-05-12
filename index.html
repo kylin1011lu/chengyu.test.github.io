@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
 
@@ -7,7 +8,7 @@
 
   <!--http://www.html5rocks.com/en/mobile/mobifying/-->
   <meta name="viewport"
-        content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1,minimal-ui=true"/>
+    content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1,minimal-ui=true" />
 
   <!--https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html-->
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -15,16 +16,16 @@
   <meta name="format-detection" content="telephone=no">
 
   <!-- force webkit on 360 -->
-  <meta name="renderer" content="webkit"/>
-  <meta name="force-rendering" content="webkit"/>
+  <meta name="renderer" content="webkit" />
+  <meta name="force-rendering" content="webkit" />
   <!-- force edge on IE -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="msapplication-tap-highlight" content="no">
 
   <!-- force full screen on some browser -->
-  <meta name="full-screen" content="yes"/>
-  <meta name="x5-fullscreen" content="true"/>
-  <meta name="360-fullscreen" content="true"/>
+  <meta name="full-screen" content="yes" />
+  <meta name="x5-fullscreen" content="true" />
+  <meta name="360-fullscreen" content="true" />
 
   <!--fix fireball/issues/3568 -->
   <!--<meta name="browsermode" content="application">-->
@@ -35,23 +36,24 @@
 
   <link rel="icon" href="favicon.ico" />
 
-  <link rel="stylesheet" type="text/css" href="style.8442f.css"/>
+  <link rel="stylesheet" type="text/css" href="style.0881f.css" />
 
 </head>
+
 <body>
   <div id="GameDiv">
-      <div id="Cocos3dGameContainer">
-        <canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="99"></canvas>
-      </div>
+    <div id="Cocos3dGameContainer">
+      <canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="99"></canvas>
     </div>
+  </div>
 
-    <div id="splash">
-      <div class="progress-bar stripes">
-        <span style="width: 0%"></span>
-      </div>
+  <div id="splash">
+    <div class="progress-bar stripes">
+      <span style="width: 0%"></span>
     </div>
+  </div>
 
-    <script src="share.js" charset="utf-8"> </script>
+  <script src="share.js" charset="utf-8"> </script>
 
   
 <!-- Polyfills bundle. -->
@@ -64,18 +66,53 @@
 <script src="src/import-map.cfe37.json" type="systemjs-importmap" charset="utf-8"> </script>
 
 <script>
-    System.import('./index.557dc.js').catch(function(err) { console.error(err); })
+    System.import('./index.08d8b.js').catch(function(err) { console.error(err); })
 </script>
 
 
 
   <script type="text/javascript">
     (function () {
-   
-        var splash = document.getElementById('splash');
-        splash.style.display = 'block';
+      var splash = document.getElementById('splash');
+      splash.style.display = 'block';
+
+      const bodyWidth = document.body.clientWidth;
+      const bodyHeight = document.body.clientHeight;
+      console.log("ratio:", bodyHeight / bodyWidth);
+
+      if (bodyHeight / bodyWidth >= 1.7) {
+        console.log("fit");
+        splash.style.position = "absolute";
+
+        splash.style.left = "0";
+        splash.style.top = "0";
+        splash.style.width = "100%";
+        splash.style.height = "100%";
+
+        splash.style.background = "#171717 url(./splash.jpg) no-repeat center";
+        splash.style.backgroundSize = "100% 100%";
+        splash.style.backgroundColor = "white";
+
+      } else {
+        console.log("no fit");
+
+        var w = bodyHeight / 1.78;
+        var ratio = 100 * w / bodyWidth;
+
+        splash.style.position = "absolute";
+        splash.style.margin = "0 auto";
+        splash.style.top = "0";
+        splash.style.left = ((100 - ratio) / 2) + "%";
+        splash.style.width = ratio + "%";
+        splash.style.height = "100%";
+
+        splash.style.background = "#171717 url(./splash.jpg) no-repeat center";
+        splash.style.backgroundSize = "100% 100%";
+        splash.style.backgroundColor = "white";
+      }
     })();
   </script>
-  
+
 </body>
+
 </html>

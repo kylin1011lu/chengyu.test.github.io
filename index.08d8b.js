@@ -8,11 +8,13 @@ System.register(["./application.0b586.js"], function (_export, _context) {
     console.log('Engine is initialized');
     cc.director.once(cc.Director.EVENT_AFTER_SCENE_LAUNCH, function () {
       console.log('game run over');
-      splash.style.display = 'none';
+      setTimeout(function () {
+        splash.style.display = 'none';
 
-      if (application.timer) {
-        clearInterval(application.timer);
-      }
+        if (application.timer) {
+          clearInterval(application.timer);
+        }
+      }, 50);
     });
   }
 
