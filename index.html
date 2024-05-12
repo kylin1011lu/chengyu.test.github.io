@@ -33,18 +33,25 @@
   <!--<link rel="apple-touch-icon" href=".png" />-->
   <!--<link rel="apple-touch-icon-precomposed" href=".png" />-->
 
-  <link rel="stylesheet" type="text/css" href="style.02f4a.css"/>
+  <link rel="icon" href="favicon.ico" />
+
+  <link rel="stylesheet" type="text/css" href="style.8442f.css"/>
 
 </head>
 <body>
-  <div id="GameDiv" cc_exact_fit_screen="true">
+  <div id="GameDiv">
       <div id="Cocos3dGameContainer">
         <canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="99"></canvas>
       </div>
     </div>
 
-    <script src="share.js" charset="utf-8"> </script>
+    <div id="splash">
+      <div class="progress-bar stripes">
+        <span style="width: 0%"></span>
+      </div>
+    </div>
 
+    <script src="share.js" charset="utf-8"> </script>
 
   
 <!-- Polyfills bundle. -->
@@ -57,8 +64,18 @@
 <script src="src/import-map.cfe37.json" type="systemjs-importmap" charset="utf-8"> </script>
 
 <script>
-    System.import('./index.42d05.js').catch(function(err) { console.error(err); })
+    System.import('./index.1b58c.js').catch(function(err) { console.error(err); })
 </script>
 
+
+
+  <script type="text/javascript">
+    (function () {
+   
+        var splash = document.getElementById('splash');
+        splash.style.display = 'block';
+    })();
+  </script>
+  
 </body>
 </html>

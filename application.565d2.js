@@ -1,7 +1,7 @@
 System.register([], function (_export, _context) {
   "use strict";
 
-  var cc, Application;
+  var cc, percentJd, timer, Application;
 
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -9,14 +9,40 @@ System.register([], function (_export, _context) {
 
   function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+  function onProgress(percent) {
+    if (percent > percentJd) {
+      percentJd = percent;
+    }
+
+    var progressBar = splash.querySelector('.progress-bar span'); // var percent = 100 * finish / total;
+
+    if (progressBar) {
+      progressBar.style.width = percent + '%';
+    }
+  } //------------end-----------------
+
+
   return {
     setters: [],
     execute: function () {
+      //---------------自动 updata Progress--------------
+      percentJd = 0;
+      timer = setInterval(function () {
+        var now = new Date(); //console.log(now.toString());
+
+        if (percentJd < 90) {
+          percentJd = percentJd + 1;
+          onProgress(percentJd);
+        } else {
+          clearInterval(timer);
+        }
+      }, 1000);
+
       _export("Application", Application = /*#__PURE__*/function () {
         function Application() {
           _classCallCheck(this, Application);
 
-          this.settingsPath = 'src/settings.acb8c.json';
+          this.settingsPath = 'src/settings.c4768.json';
           this.showFPS = false;
         }
 
@@ -39,6 +65,7 @@ System.register([], function (_export, _context) {
         }, {
           key: "start",
           value: function start() {
+            onProgress(50);
             return cc.game.init({
               debugMode: false ? cc.DebugMode.INFO : cc.DebugMode.ERROR,
               settingsPath: this.settingsPath,
@@ -48,6 +75,9 @@ System.register([], function (_export, _context) {
                 // }
                 profiling: {
                   showFPS: this.showFPS
+                },
+                screen: {
+                  "exactFitScreen": window.exactFitScreen
                 }
               }
             }).then(function () {
